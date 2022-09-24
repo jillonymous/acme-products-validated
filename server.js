@@ -21,6 +21,11 @@ app.put('/api/products/:id', (req, res, next)=> {
     .catch(next);
 });
 
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).send(err);
+})
+
 const start = async()=> {
   try {
     await conn.sync({ force: true });
